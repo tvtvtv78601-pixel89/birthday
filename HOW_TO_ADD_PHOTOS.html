@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Add Photos - Quick Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            line-height: 1.8;
+        }
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #ffd700;
+            margin-top: 40px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+        .method {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .step {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            color: #ffd700;
+        }
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .code-block pre {
+            margin: 0;
+            color: #4CAF50;
+            font-family: 'Courier New', monospace;
+        }
+        .warning {
+            background: rgba(255, 152, 0, 0.2);
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>📸 How to Add Photos to the Website</h1>
+
+    <div class="success">
+        <strong>✨ Good News!</strong> Adding photos is super easy! Choose any method below.
+    </div>
+
+    <div class="method">
+        <h2>🌟 Method 1: Simple Image Replacement (Recommended)</h2>
+        
+        <div class="step">
+            <strong>Step 1:</strong> Prepare Your Photos
+            <ul>
+                <li>Select 6 beautiful photos of Hina G</li>
+                <li>Save them as: <code>photo1.jpg</code>, <code>photo2.jpg</code>, <code>photo3.jpg</code>, <code>photo4.jpg</code>, <code>photo5.jpg</code>, <code>photo6.jpg</code></li>
+                <li>Place all photos in the same folder as <code>index.html</code></li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <strong>Step 2:</strong> Open <code>index.html</code> in a Text Editor
+            <ul>
+                <li>Right-click on <code>index.html</code></li>
+                <li>Select "Open With" → Choose "Notepad" or any text editor</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <strong>Step 3:</strong> Find the Photo Gallery Section
+            <ul>
+                <li>Press <code>Ctrl+F</code> (Find)</li>
+                <li>Search for: <code>photo-gallery</code></li>
+                <li>You'll find 6 photo placeholders</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <strong>Step 4:</strong> Replace Each Placeholder
+            <p>Find this code:</p>
+            <div class="code-block">
+                <pre>&lt;div class="photo-placeholder"&gt;PHOTO_1&lt;/div&gt;</pre>
+            </div>
+            <p>Replace it with:</p>
+            <div class="code-block">
+                <pre>&lt;img src="photo1.jpg" alt="Hina G" style="width: 100%; height: 250px; object-fit: cover; border-radius: 15px;"&gt;</pre>
+            </div>
+            <p>Repeat for all 6 photos (photo1.jpg through photo6.jpg)</p>
+        </div>
+
+        <div class="step">
+            <strong>Step 5:</strong> Save and Test
+            <ul>
+                <li>Save the file (<code>Ctrl+S</code>)</li>
+                <li>Double-click <code>index.html</code> to open in browser</li>
+                <li>Navigate to Screen 4 to see your photos! 🎉</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="method">
+        <h2>🎨 Method 2: Using CSS Background Images</h2>
+        
+        <div class="step">
+            <strong>Step 1:</strong> Prepare photos (same as Method 1)
+        </div>
+
+        <div class="step">
+            <strong>Step 2:</strong> Open <code>styles.css</code> in a text editor
+        </div>
+
+        <div class="step">
+            <strong>Step 3:</strong> Add this code at the end of the file:
+            <div class="code-block">
+                <pre>/* Custom Photo Backgrounds */
+.photo-card:nth-child(1) .photo-placeholder {
+    background-image: url('photo1.jpg');
+    background-size: cover;
+    background-position: center;
+    color: transparent;
+}
+
+.photo-card:nth-child(2) .photo-placeholder {
+    background-image: url('photo2.jpg');
+    background-size: cover;
+    background-position: center;
+    color: transparent;
+}
+
+.photo-card:nth-child(3) .photo-placeholder {
+    background-image: url('photo3.jpg');
+    background-size: cover;
+    background-position: center;
+    color: transparent;
+}
+
+.photo-card:nth-child(4) .photo-placeholder {
+    background-image: url('photo4.jpg');
+    background-size: cover;
+    background-position: center;
+    color: transparent;
+}
+
+.photo-card:nth-child(5) .photo-placeholder {
+    background-image: url('photo5.jpg');
+    background-size: cover;
+    background-position: center;
+    color: transparent;
+}
+
+.photo-card:nth-child(6) .photo-placeholder {
+    background-image: url('photo6.jpg');
+    background-size: cover;
+    background-position: center;
+    color: transparent;
+}</pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <strong>Step 4:</strong> Save and test!
+        </div>
+    </div>
+
+    <div class="method">
+        <h2>💡 Method 3: Keep Placeholders (No Photos)</h2>
+        
+        <div class="step">
+            <p>If you don't have photos ready, that's okay! The website works beautifully with the placeholders labeled <span class="highlight">PHOTO_1</span> through <span class="highlight">PHOTO_6</span>.</p>
+            <p>You can add real photos later anytime using Method 1 or 2.</p>
+        </div>
+    </div>
+
+    <div class="warning">
+        <strong>⚠️ Common Issues:</strong>
+        <ul>
+            <li><strong>Photos not showing?</strong> Check that file names match exactly (case-sensitive)</li>
+            <li><strong>Wrong photo order?</strong> Rename your files to match photo1.jpg through photo6.jpg</li>
+            <li><strong>Photos too big?</strong> The website automatically resizes them - don't worry!</li>
+            <li><strong>Different image format?</strong> Use .jpg, .jpeg, or .png - all work fine!</li>
+        </ul>
+    </div>
+
+    <div class="success">
+        <h3>✅ Quick File Structure Check</h3>
+        <p>Your folder should look like this:</p>
+        <div class="code-block">
+            <pre>📁 hi/
+├── 📄 index.html
+├── 📄 styles.css
+├── 📄 script.js
+├── 📄 README.md
+├── 🖼️ photo1.jpg
+├── 🖼️ photo2.jpg
+├── 🖼️ photo3.jpg
+├── 🖼️ photo4.jpg
+├── 🖼️ photo5.jpg
+└── 🖼️ photo6.jpg</pre>
+        </div>
+    </div>
+
+    <div class="method">
+        <h2>🎯 Pro Tips</h2>
+        <ul>
+            <li>Use high-quality photos for best results</li>
+            <li>Portrait or square photos work best</li>
+            <li>Make sure faces are clearly visible</li>
+            <li>Mix different moments: smiles, candid shots, special occasions</li>
+            <li>Photos will automatically fit the layout - no need to resize manually</li>
+            <li>You can use more or fewer than 6 photos (see README.md for details)</li>
+        </ul>
+    </div>
+
+    <div class="success">
+        <h3>🎉 That's It!</h3>
+        <p>Once you've added your photos, double-click <code>index.html</code> to see the final result.</p>
+        <p style="text-align: center; font-size: 1.5em; margin-top: 30px;">
+            Made with ❤️ for Hina G
+        </p>
+    </div>
+
+    <div style="text-align: center; margin-top: 50px; padding: 30px; background: rgba(255, 255, 255, 0.1); border-radius: 15px;">
+        <h3>Need More Help?</h3>
+        <p>Check out <code>README.md</code> for complete customization guide!</p>
+        <p style="color: #ffd700; font-size: 1.2em; margin-top: 20px;">Happy Birthday Hina G! 🎂❤️</p>
+    </div>
+</body>
+</html>

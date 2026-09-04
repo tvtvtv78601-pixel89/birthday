@@ -1,0 +1,36 @@
+# Logs
+*.log
+npm-debug.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories and files
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Audio files (optional - uncomment if you add music)
+# *.mp3
+# *.wav
+
+# Large media files (optional)
+# *.mp4
+# *.mov
+
+# Environment files
+.env
+.env.local
+
+# Build outputs (not needed for static site)
+dist/
+build/
+.vercel/

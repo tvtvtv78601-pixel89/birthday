@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Happy Birthday Hina G ❤️ | My Jaan, My Sukoon</title>
+    <meta name="description" content="A special romantic, sweet, and fun surprise web experience for Hina G ❤️">
+    <meta name="theme-color" content="#764ba2">
+    <!-- Google Fonts for premium modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Floating particles background canvas -->
+    <canvas id="ambientCanvas"></canvas>
+
+    <!-- Header Controls: Mute & Progress -->
+    <div class="top-nav-bar">
+        <div id="progressBar" class="progress-indicator">
+            <span class="progress-dot"></span>
+            <span id="progressText">Surprise 1/11</span>
+        </div>
+        <button id="muteBtn" class="mute-btn" aria-label="Toggle sound">
+            🔊
+        </button>
+    </div>
+
+    <!-- SCREEN 1: Welcome -->
+    <div id="screen1" class="screen active">
+        <div class="screen-bg-decor hearts-bg"></div>
+        <div class="content-center">
+            <div class="hero-badge fade-in">✨ For My Special Person ✨</div>
+            <h1 class="romantic-title fade-in delay-1">Hello Hina G ❤️</h1>
+            <p class="fade-in delay-2">Aaj aapke liye kuch bohot special aur dil ke kareeb tayyar kiya hai...</p>
+            <p class="fade-in delay-3">Lekin ye koi aam birthday wish nahi hai 👀</p>
+            <p class="fade-in delay-4">Aapko har screen par pyaar, masti, tareefein aur surprises milenge...</p>
+            <p class="highlight-text fade-in delay-5">Ready hain meri Jaan? 🥹❤️</p>
+            <button class="btn-primary glow fade-in delay-5" onclick="nextScreen(2)">
+                START THE SURPRISE ✨
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: Why Today Is Special -->
+    <div id="screen2" class="screen">
+        <div class="screen-bg-decor balloons-bg"></div>
+        <div class="content-center">
+            <div class="hero-badge fade-in">🌹 Dil Se Ek Baat 🌹</div>
+            <h2 class="fade-in delay-1">Pehle ek important baat...</h2>
+            <div class="message-box glass-card fade-in delay-2">
+                <p>Mujhe bohot zyada khushi aur fakhar hai ke<br>
+                <strong>Hina G</strong> is duniya mein paida huin ❤️</p>
+                <p>Kyunki agar aap is duniya mein na aatin,<br>
+                toh meri zindagi itni khoobsurat aur roshan kabhi na hoti.</p>
+                <div class="roles-pill-container">
+                    <span class="role-pill">Meri Wife 💍</span>
+                    <span class="role-pill">Meri Girlfriend 💖</span>
+                    <span class="role-pill">Meri Lover 🔥</span>
+                    <span class="role-pill">Meri Best Friend 🌸</span>
+                    <span class="role-pill">Meri Jaan 🥹</span>
+                    <span class="role-pill highlight-pill">Mera Sukoon 🕊️❤️</span>
+                </div>
+            </div>
+            <button class="btn-primary fade-in delay-3" onclick="nextScreen(3)">
+                Aage Chalein ❤️ ✨
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: Funny Question with escaping NO button -->
+    <div id="screen3" class="screen">
+        <div class="screen-bg-decor sparkles-bg"></div>
+        <div class="content-center">
+            <div class="hero-badge fade-in">😂 Ek Masti Bhara Sawal 😂</div>
+            <h2 class="fade-in delay-1">Hina G, ek bohot serious question hai... 👀</h2>
+            <p class="fade-in delay-2 question-prompt">
+                Kya aapko pata hai ke aap meri poori zindagi mein kitni zyada special aur cute hain? 😂❤️
+            </p>
+            <div class="button-container" id="funnyBtnContainer">
+                <button class="btn-yes" onclick="yesClicked()">
+                    YES 😍 BOHOT ZYADA!
+                </button>
+                <button class="btn-no" id="noBtn" onclick="noClicked()" onmouseover="moveNoBtn()" ontouchstart="moveNoBtn()">
+                    NO 😒
+                </button>
+            </div>
+            <p id="funnyMessage" class="funny-message"></p>
+        </div>
+    </div>
+
+    <!-- SCREEN 4: Romantic, Loving, Playful & Sex Questions -->
+    <div id="screen4" class="screen">
+        <div class="screen-bg-decor floating-hearts-bg"></div>
+        <div class="content-center">
+            <div class="hero-badge fade-in" id="quizBadge">💕 Dil Ki Baatein 💕</div>
+            <h2 class="fade-in" id="questionTitle">Kuch Pyare Sawalaat Hina G... 😏❤️</h2>
+            
+            <!-- Question Step Tracker -->
+            <div class="quiz-step-tracker" id="quizTracker">
+                <!-- Dots generated in JS -->
+            </div>
+
+            <div id="questionContainer" class="question-container fade-in delay-1">
+                <!-- Dynamic Questions -->
+            </div>
+            <div id="questionFeedback" class="question-feedback"></div>
+        </div>
+    </div>
+
+    <!-- SCREEN 5: Photo Gallery -->
+    <div id="screen5" class="screen">
+        <div class="content-center">
+            <div class="hero-badge fade-in">📸 Khoobsurat Lamhaat 📸</div>
+            <h2 class="fade-in">Aapke Kuch Special Moments ❤️</h2>
+            <p class="gallery-subtitle fade-in delay-1">Har tasveer mein bas aapka noor aur meri mohabbat hai 🥹</p>
+            <div class="photo-gallery">
+                <div class="photo-card" style="animation-delay: 0.1s">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Hina G Smile" class="anime-photo" loading="lazy">
+                    <p class="photo-caption">Ye pyaari si smile ❤️</p>
+                </div>
+                <div class="photo-card" style="animation-delay: 0.2s">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Hina G Eyes" class="anime-photo" loading="lazy">
+                    <p class="photo-caption">Ye noorani aankhein 🥹✨</p>
+                </div>
+                <div class="photo-card" style="animation-delay: 0.3s">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Hina G Cute" class="anime-photo" loading="lazy">
+                    <p class="photo-caption">Kitni cute hain aap 😂❤️</p>
+                </div>
+                <div class="photo-card" style="animation-delay: 0.4s">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80" alt="Hina G Favorite" class="anime-photo" loading="lazy">
+                    <p class="photo-caption">Meri Favorite Insaan 🌹</p>
+                </div>
+                <div class="photo-card" style="animation-delay: 0.5s">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80" alt="Hina G Sukoon" class="anime-photo" loading="lazy">
+                    <p class="photo-caption">Mera Sukoon Aur Meri Jaan ❤️</p>
+                </div>
+                <div class="photo-card" style="animation-delay: 0.6s">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80" alt="Hina G Forever" class="anime-photo" loading="lazy">
+                    <p class="photo-caption">Bas aap hi aap har lamha ❤️</p>
+                </div>
+            </div>
+            <button class="btn-primary glow" onclick="nextScreen(6)" style="margin-top: 25px;">
+                Next Surprise Kholo 🎁
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 6: Scratch Card -->
+    <div id="screen6" class="screen">
+        <div class="content-center">
+            <div class="hero-badge fade-in">🪄 Scratch & Win My Heart 🪄</div>
+            <h2 class="fade-in">Hina G, ab asli surprise hai 👀❤️</h2>
+            <p class="fade-in delay-1">Apni finger ya mouse se card ko scratch karein<br>aur dekhein andar kya likha hai...</p>
+            <div class="scratch-container fade-in delay-2">
+                <canvas id="scratchCanvas"></canvas>
+                <div class="scratch-reveal">
+                    <h3>Surprise For My Queen! 👑❤️</h3>
+                    <p>Aap meri favorite person hain.<br>
+                    Aap meri life ka sabse khoobsurat hissa hain.<br>
+                    Main bohot lucky hoon ke mujhe aap jaisi pyaari shona jaan mili. 🥹❤️<br><br>
+                    <strong>I Love You Infinity Times! ♾️✨</strong></p>
+                </div>
+            </div>
+            <p id="scratchMessage" class="scratch-message"></p>
+            <button id="scratchNextBtn" class="btn-primary glow" onclick="nextScreen(7)" style="display: none;">
+                OPEN NEXT SURPRISE ❤️ ✨
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 7: Emotional Love Message -->
+    <div id="screen7" class="screen">
+        <div class="screen-bg-decor floating-hearts-bg"></div>
+        <div class="content-center">
+            <div class="hero-badge fade-in">💌 Meri Jaan Ke Liye 💌</div>
+            <div class="love-message-box glass-card fade-in delay-1">
+                <h2>Hina G... ❤️</h2>
+                <p>Kabhi kabhi mere paas aapko explain karne ke liye lafz hi kam pad jaate hain.</p>
+                <p>Aap sirf meri <strong>Wife</strong> nahi hain...<br>
+                Aap meri <strong>Girlfriend</strong> bhi hain,<br>
+                meri <strong>Lover</strong> bhi,<br>
+                meri <strong>Best Friend</strong> bhi,<br>
+                meri <strong>Jaan</strong> bhi,<br>
+                aur mera <strong>Sukoon</strong> bhi.</p>
+                <p>Aapka mere saath hona Allah ka mere upar sabse bada inaam hai.</p>
+                <p>Aapki smile mujhe har gham bhula deti hai,<br>
+                aapki khushi meri khushi hai,<br>
+                aur aapka chain o sukoon mere liye sabse pehle hai.</p>
+                <p><strong>Thank you Hina G,</strong><br>
+                meri zindagi mein roshni lane ke liye.</p>
+                <p class="love-final"><strong>I Love You Hina G ❤️♾️</strong></p>
+            </div>
+            <button class="btn-primary glow" onclick="nextScreen(8)" style="margin-top: 30px;">
+                Yaadon Ka Safar Dekhein 👀 💝
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 8: Memory Lane -->
+    <div id="screen8" class="screen">
+        <div class="content-center">
+            <div class="hero-badge fade-in">🌟 Pyari Yaadein 🌟</div>
+            <h2 class="fade-in">Humari Kuch Yaadein ❤️</h2>
+            <div class="memory-container">
+                <div class="memory-card glass-card fade-in delay-1">
+                    <div class="memory-emoji">🌟</div>
+                    <h3>Pehli Baar</h3>
+                    <p>Jab pehli baar aapse baat hui aur aapko mehsoos kiya,<br>
+                    us din se meri duniya hi badal gayi ❤️</p>
+                </div>
+                <div class="memory-card glass-card fade-in delay-2">
+                    <div class="memory-emoji">💕</div>
+                    <h3>Har Din Aapke Saath</h3>
+                    <p>Aapke saath har lamha special lagta hai,<br>
+                    zindagi itni haseen pehle kabhi nahi lagi 🥹</p>
+                </div>
+                <div class="memory-card glass-card fade-in delay-3">
+                    <div class="memory-emoji">🌸</div>
+                    <h3>Aapki Cute Smile</h3>
+                    <p>Jab aap khilkhila kar hasti hain,<br>
+                    toh mera poora dil sukoon se bhar jata hai ❤️</p>
+                </div>
+                <div class="memory-card glass-card fade-in delay-4">
+                    <div class="memory-emoji">🌙</div>
+                    <h3>Meethi Raatein</h3>
+                    <p>Aapke khayalat aur aapki baaton mein hi<br>
+                    meri har shaam aur raat mehfooz hai 🥰</p>
+                </div>
+            </div>
+            <button class="btn-primary fade-in delay-5" onclick="nextScreen(9)">
+                Mere Waade Aapse 💍 💝
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 9: Special Promises -->
+    <div id="screen9" class="screen">
+        <div class="screen-bg-decor floating-hearts-bg"></div>
+        <div class="content-center">
+            <div class="hero-badge fade-in">💍 Pukhta Waade 💍</div>
+            <h2 class="fade-in">Mere Waade Hina G Aapse ❤️</h2>
+            <div class="promises-container">
+                <div class="promise-card glass-card fade-in delay-1">
+                    <div class="promise-icon">💍</div>
+                    <p>Main hamesha aapka saath dunga,<br>
+                    har dukh mein, har sukh mein, zindagi ke aakhri saans tak ❤️</p>
+                </div>
+                <div class="promise-card glass-card fade-in delay-2">
+                    <div class="promise-icon">🌹</div>
+                    <p>Aapko hamesha apni rani bana kar rakhunga,<br>
+                    aur aapke chehre se smile kabhi gayab nahi hone dunga 🥹</p>
+                </div>
+                <div class="promise-card glass-card fade-in delay-3">
+                    <div class="promise-icon">⭐</div>
+                    <p>Aapki har choti badi wish poori karne ka<br>
+                    mera aapse sacha waada hai ✨</p>
+                </div>
+                <div class="promise-card glass-card fade-in delay-4">
+                    <div class="promise-icon">💖</div>
+                    <p>Aapse be-panah mohabbat karna kabhi kam nahi hoga...<br>
+                    har guzarte din ke saath aur badhega ♾️❤️</p>
+                </div>
+            </div>
+            <button class="btn-primary glow fade-in delay-5" onclick="nextScreen(10)">
+                Ab Final Birthday Countdown 👀 🎂
+            </button>
+        </div>
+    </div>
+
+    <!-- SCREEN 10: Countdown -->
+    <div id="screen10" class="screen">
+        <div class="content-center">
+            <div class="hero-badge fade-in">⏳ Dil Thaam Kar Dekhiye ⏳</div>
+            <h2 class="fade-in">Hina G...</h2>
+            <p class="fade-in delay-1">Aankhein band karke 5 tak count karein aur wish maangein...</p>
+            <div id="countdownNumber" class="countdown-number">5</div>
+        </div>
+    </div>
+
+    <!-- SCREEN 11: Final Birthday Cake & Grand Celebration -->
+    <div id="screen11" class="screen">
+        <div class="confetti-container" id="confettiContainer"></div>
+        <div class="balloons-final">
+            <div class="balloon" style="left: 8%; animation-delay: 0s;"></div>
+            <div class="balloon" style="left: 22%; animation-delay: 0.7s;"></div>
+            <div class="balloon" style="left: 38%; animation-delay: 1.4s;"></div>
+            <div class="balloon" style="left: 62%; animation-delay: 0.3s;"></div>
+            <div class="balloon" style="left: 78%; animation-delay: 1.8s;"></div>
+            <div class="balloon" style="left: 92%; animation-delay: 2.5s;"></div>
+        </div>
+        <div class="content-center">
+            <div class="hero-badge fade-in">🎉 Grand Celebration 🎉</div>
+            <h1 class="birthday-title fade-in">Happy Birthday<br>Meri Jaan Hina G ❤️🎂</h1>
+            
+            <div class="cake-container fade-in delay-1" onclick="blowCandles()" title="Candles par tap karein!">
+                <div class="cake">
+                    <div class="cake-top">
+                        <div class="candle" id="candle1">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle" id="candle2">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle" id="candle3">
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                    <div class="cake-middle">
+                        <div class="frosting-layer"></div>
+                    </div>
+                    <div class="cake-bottom"></div>
+                    <div class="cake-text">Happy Birthday Hina G ❤️</div>
+                </div>
+                <div class="tap-hint-banner">
+                    <span class="tap-hand">👆</span>
+                    <span class="tap-hint-text">Candles bujhane ke liye yahan click karein! ✨🎂</span>
+                </div>
+            </div>
+
+            <p id="wishMessage" class="wish-message fade-in delay-2">
+                Make a Wish & Tap Cake / Candles ✨
+            </p>
+
+            <div class="love-titles fade-in delay-3">
+                <p>Meri <strong>Wife</strong> ❤️</p>
+                <p>Meri <strong>Girlfriend</strong> ❤️</p>
+                <p>Meri <strong>Lover</strong> ❤️</p>
+                <p>Mera <strong>Sukoon</strong> ❤️</p>
+                <p>Meri <strong>Duniya</strong> ❤️</p>
+            </div>
+
+            <div id="finalMessage" class="final-message" style="display: none;">
+                <div class="final-box glass-card">
+                    <h3>Happy Birthday Hina G 🎂❤️</h3>
+                    <p>Allah Tala aapko hamesha salamat aur be-hisaab khushiyon ke saath rakhe,<br>
+                    aapki har dua aur nek khwahish qabool farmaye,<br>
+                    aapke labon par yehi haseen muskurahat hamesha qaim rahe,<br>
+                    aur hum dono ka ye pakiza aur khoobsurat rishta taa-hayat aabad rahe. ❤️</p>
+                    <p>Aap meri zindagi ki sirf ek khoobsurat kahani nahi...</p>
+                    <p class="final-wish"><strong>Aap meri poori zindagi aur meri rooh hain. ❤️♾️</strong></p>
+                    <p class="final-love">I LOVE YOU SO MUCH HINA G ❤️🔥</p>
+                    <button class="btn-primary glow" onclick="celebrateAgain()" style="margin-top: 20px;">
+                        Celebrate Once More! 🎆🎉
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements (with synthesized fallback engine in JS) -->
+    <audio id="bgMusic" loop preload="none">
+        <source src="background-music.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="clickSound" preload="none">
+        <source src="click.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="successSound" preload="none">
+        <source src="success.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
